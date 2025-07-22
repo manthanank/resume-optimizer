@@ -1,6 +1,5 @@
 const { extractText } = require('../utils/fileParser');
 const { analyzeResumeAndJD } = require('../utils/gemini');
-const fs = require('fs');
 
 exports.analyze = async (req, res) => {
   try {
@@ -18,9 +17,6 @@ exports.analyze = async (req, res) => {
       : await extractText(jdFile);
 
     const analysis = await analyzeResumeAndJD(resumeText, jobDesc);
-
-    if (resumeFile?.path) fs.unlinkSync(resumeFile.path);
-    if (jdFile?.path) fs.unlinkSync(jdFile.path);
 
     res.json({ analysis });
   } catch (error) {

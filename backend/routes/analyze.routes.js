@@ -3,7 +3,7 @@ const multer = require('multer');
 const { analyze } = require('../controllers/analyze.controller');
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post(
   '/analyze',
