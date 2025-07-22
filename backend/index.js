@@ -8,6 +8,12 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(
+  "/",
+  (req, res) => {
+    res.send("Resume Optimizer API is running");
+  }
+);
 app.use('/api', analyzeRoutes);
 
 const PORT = process.env.PORT || 5000;

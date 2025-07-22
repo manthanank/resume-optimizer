@@ -7,10 +7,20 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "resume",
+    "optimizer",
+    "AI",
+    "job",
+    "career",
+    "CV",
+    "application",
+    "improvement",
+    "analysis"
+  ],
+  "author": "Manthan Ank",
   "license": "ISC",
-  "description": "",
+  "description": "AI-powered resume and job description analyzer to help you optimize your resume for specific job postings.",
   "dependencies": {
     "@google/genai": "^1.10.0",
     "cors": "^2.8.5",
