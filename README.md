@@ -1,59 +1,85 @@
-# ResumeOptimizer
+# Resume Optimizer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
+AI-powered resume and job description analyzer to help you optimize your resume for specific job postings.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Upload your resume (PDF or DOCX)
+- Upload or paste a job description
+- Get an AI-generated analysis: match score, missing keywords, and improvement suggestions
+- Dark mode toggle
+- Responsive, modern UI (Tailwind CSS)
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Frontend:** Angular 20 (standalone components, signals, reactive forms), Tailwind CSS, ngx-markdown
+- **Backend:** Node.js, Express, Multer, pdf-parse, mammoth, Google Gemini API
 
-## Code scaffolding
+## Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js (v20+ recommended)
+- npm
+- Angular CLI (`npm install -g @angular/cli`)
+- Google Gemini API key ([get one here](https://aistudio.google.com/app/apikey))
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Backend Setup
 
-```bash
-ng generate --help
-```
+1. `cd backend`
+2. `npm install`
+3. Create a `.env` file in `backend/` with:
 
-## Building
+   ```text
+   PORT=5000
+   GEMINI_API_KEY=your_google_gemini_api_key
+   ```
 
-To build the project run:
+4. Start the backend:
 
-```bash
-ng build
-```
+   ```bash
+   npm run dev
+   # or
+   npm start
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   The backend runs on `http://localhost:5000` by default.
 
-## Running unit tests
+### Frontend Setup
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. In the project root:
 
-```bash
-ng test
-```
+   ```bash
+   npm install
+   ng serve
+   ```
 
-## Running end-to-end tests
+2. The app will be available at `http://localhost:4200`
 
-For end-to-end (e2e) testing, run:
+## Usage
 
-```bash
-ng e2e
-```
+1. Open the app in your browser.
+2. Upload your resume (PDF or DOCX).
+3. Upload a job description file **or** paste the job description text.
+4. Click **Analyze Resume**.
+5. View the AI-powered analysis, including:
+   - Match score (0-100)
+   - Missing keywords
+   - Suggested improvements
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## API
 
-## Additional Resources
+- **Endpoint:** `POST /api/analyze`
+- **Form Data:**
+  - `resume`: Resume file (PDF/DOCX, required)
+  - `jobDesc`: Job description file (optional if `jobDescText` is provided)
+  - `jobDescText`: Job description as text (optional if `jobDesc` is provided)
+- **Response:** `{ analysis: string }` (Markdown)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Styling
+
+- 100% Tailwind CSS (no custom CSS)
+
+## License
+
+MIT
