@@ -1,9 +1,9 @@
-import { GoogleGenAI } from "@google/genai";
-import dotenv from "dotenv";
+const { GoogleGenAI } = require("@google/genai");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 async function analyzeResumeAndJD(resumeText, jobDescText) {
   const prompt = `
@@ -19,11 +19,17 @@ Job Description:
 ${jobDescText}
 `;
 
-  const response = await genAI.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-  });
-  return response.text;
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+    });
+
+    return response.text;
+  } catch (error) {
+    console.error('Error generating content with Gemini:', error);
+    throw error;
+  }
 }
 
-export { analyzeResumeAndJD };
+module.exports = { analyzeResumeAndJD };
