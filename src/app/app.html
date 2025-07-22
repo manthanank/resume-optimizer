@@ -11,12 +11,13 @@
     </button>
   </div>
   <router-outlet />
-  <div class="text-sm text-gray-600 dark:text-gray-300 text-center mt-2">
-    Visitors: {{ visitorCount() }}
+  <div class="text-sm text-gray-600 dark:text-gray-300 text-center mt-2" aria-live="polite">
     @if (isVisitorCountLoading()) {
-    <span class="animate-pulse">Loading visitors...</span>
+      <span class="animate-pulse">Loading visitors...</span>
     } @else if (visitorCountError()) {
-    Error: {{ visitorCountError() }}
+      <span class="text-red-500">Error: {{ visitorCountError() }}</span>
+    } @else {
+      Visitors: {{ visitorCount() }}
     }
   </div>
 </div>
