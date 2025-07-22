@@ -1,12 +1,22 @@
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
   <div class="flex justify-end p-4">
-    <button type="button" (click)="toggleDarkMode()" class="p-2 rounded-full border border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 transition-colors" [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+    <button type="button" (click)="toggleDarkMode()"
+      class="p-2 rounded-full border border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-600 transition-colors"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
       @if (!darkMode()) {
-        🌙
+      🌙
       } @else {
-        ☀️
+      ☀️
       }
     </button>
   </div>
-  <router-outlet/>
+  <router-outlet />
+  <div class="text-sm text-gray-600 dark:text-gray-300 text-center mt-2">
+    Visitors: {{ visitorCount() }}
+    @if (isVisitorCountLoading()) {
+    <span class="animate-pulse">Loading visitors...</span>
+    } @else if (visitorCountError()) {
+    Error: {{ visitorCountError() }}
+    }
+  </div>
 </div>
